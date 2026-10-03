@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>POSTER LAB — Art That Transforms Your Space</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    background:#050505;
+}
+
+body{
+    margin:0;
+    background:#050505;
+    color:#fff;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body::-webkit-scrollbar{
+    width:5px;
+}
+
+body::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#555;
+    border-radius:20px;
+}
+
+/* ================================
+   GLOBAL
+================================ */
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+.container{
+    width:min(1240px,92%);
+    margin:auto;
+}
+
+/* ================================
+   PRELOADER
+================================ */
+
+.preloader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:#050505;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity .8s ease,visibility .8s ease;
+}
+
+.preloader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.loader-logo{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(30px,7vw,75px);
+    letter-spacing:.18em;
+    font-weight:500;
+}
+
+.loader-line{
+    width:180px;
+    height:1px;
+    background:#333;
+    margin:22px auto 0;
+    overflow:hidden;
+}
+
+.loader-line span{
+    display:block;
+    width:0;
+    height:100%;
+    background:#fff;
+    animation:loader 1.8s ease forwards;
+}
+
+@keyframes loader{
+    to{
+        width:100%;
+    }
+}
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:86px;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    transition:.4s ease;
+    border-bottom:1px solid transparent;
+}
+
+.navbar.scrolled{
+    height:70px;
+    background:rgba(5,5,5,.76);
+    backdrop-filter:blur(18px);
+    border-color:rgba(255,255,255,.08);
+}
+
+.nav-inner{
+    width:min(1380px,92%);
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+    letter-spacing:.25em;
+    white-space:nowrap;
+}
+
+.brand small{
+    display:block;
+    font-family:"DM Sans",sans-serif;
+    font-size:7px;
+    letter-spacing:.42em;
+    opacity:.6;
+    margin-top:2px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:38px;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.nav-links a{
+    position:relative;
+    opacity:.8;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    opacity:1;
+}
+
+.nav-links a:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-7px;
+    width:0;
+    height:1px;
+    background:#fff;
+    transition:.3s;
+}
+
+.nav-links a:hover:after{
+    width:100%;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.nav-icon{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.nav-icon:hover{
+    background:#fff;
+    color:#000;
+    transform:translateY(-2px);
+}
+
+.menu-btn{
+    display:none;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+    position:relative;
+    min-height:100svh;
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    isolation:isolate;
+}
+
+.hero-video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:-5;
+}
+
+.hero-video iframe{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100vw;
+    height:56.25vw;
+    min-height:100vh;
+    min-width:177.78vh;
+    transform:translate(-50%,-50%) scale(1.18);
+    border:0;
+}
+
+.hero-video:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.92) 0%,
+            rgba(0,0,0,.58) 45%,
+            rgba(0,0,0,.72) 100%
+        ),
+        linear-gradient(
+            0deg,
+            #050505 0%,
+            transparent 30%,
+            rgba(0,0,0,.18) 100%
+        );
+}
+
+/* subtle cinematic grain */
+
+.hero-grain{
+    position:absolute;
+    inset:-50%;
+    z-index:-1;
+    opacity:.065;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    animation:grain .25s steps(2) infinite;
+}
+
+@keyframes grain{
+    0%{transform:translate(0,0)}
+    25%{transform:translate(2%,1%)}
+    50%{transform:translate(-1%,2%)}
+    75%{transform:translate(1%,-2%)}
+    100%{transform:translate(-2%,1%)}
+}
+
+.hero-content{
+    width:min(1380px,92%);
+    margin:auto;
+    padding-top:80px;
+    position:relative;
+    z-index:5;
+}
+
+.hero-kicker{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.35em;
+    color:#cfcfcf;
+    margin-bottom:25px;
+    opacity:0;
+    transform:translateY(25px);
+    animation:heroIn 1s .7s forwards;
+}
+
+.hero-kicker span{
+    width:55px;
+    height:1px;
+    background:#888;
+}
+
+.hero-title{
+    max-width:850px;
+    font-family:"Playfair Display",serif;
+    font-weight:400;
+    font-size:clamp(62px,9.5vw,155px);
+    line-height:.82;
+    letter-spacing:-.055em;
+    margin-left:-7px;
+}
+
+.hero-title .line{
+    display:block;
+    overflow:hidden;
+}
+
+.hero-title .word{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(110%);
+    animation:titleIn 1.15s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.hero-title .line:nth-child(1) .word{
+    animation-delay:.35s;
+}
+
+.hero-title .line:nth-child(2) .word{
+    animation-delay:.5s;
+}
+
+.hero-title .line:nth-child(3) .word{
+    animation-delay:.65s;
+}
+
+@keyframes titleIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes heroIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hero-description{
+    max-width:420px;
+    margin-top:38px;
+    margin-left:8px;
+    color:#c4c4c4;
+    font-size:14px;
+    line-height:1.8;
+    opacity:0;
+    transform:translateY(25px);
+    animation:heroIn 1s 1s forwards;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    margin-top:35px;
+    margin-left:8px;
+    opacity:0;
+    transform:translateY(25px);
+    animation:heroIn 1s 1.15s forwards;
+}
+
+.btn{
+    min-width:175px;
+    height:54px;
+    padding:0 27px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:0;
+    border:1px solid rgba(255,255,255,.5);
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:.35s;
+}
+
+.btn-primary{
+    background:#fff;
+    color:#000;
+}
+
+.btn-primary:hover{
+    background:transparent;
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+.btn-outline{
+    background:rgba(0,0,0,.2);
+    color:#fff;
+}
+
+.btn-outline:hover{
+    background:#fff;
+    color:#000;
+    transform:translateY(-4px);
+}
+
+/* ================================
+   FLOATING POSTERS
+================================ */
+
+.floating-poster{
+    position:absolute;
+    z-index:3;
+    width:145px;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,.28);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.65),
+        0 0 0 5px rgba(255,255,255,.025);
+    opacity:.8;
+    transition:transform .5s ease;
+    animation:floatPoster 7s ease-in-out infinite;
+}
+
+.poster-a{
+    right:13%;
+    top:20%;
+    transform:rotate(8deg);
+    animation-delay:-1s;
+}
+
+.poster-b{
+    right:5%;
+    bottom:18%;
+    width:125px;
+    transform:rotate(-9deg);
+    animation-delay:-4s;
+}
+
+.poster-c{
+    right:26%;
+    bottom:12%;
+    width:105px;
+    transform:rotate(5deg);
+    animation-delay:-2s;
+}
+
+@keyframes floatPoster{
+    0%,100%{
+        margin-top:0;
+    }
+    50%{
+        margin-top:-22px;
+    }
+}
+
+/* ================================
+   HERO BOTTOM
+================================ */
+
+.hero-bottom{
+    position:absolute;
+    left:4%;
+    right:4%;
+    bottom:32px;
+    z-index:5;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+}
+
+.scroll-label{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    color:#aaa;
+}
+
+.scroll-line{
+    width:70px;
+    height:1px;
+    background:#777;
+    position:relative;
+    overflow:hidden;
+}
+
+.scroll-line:after{
+    content:"";
+    position:absolute;
+    width:25px;
+    height:100%;
+    background:#fff;
+    left:-25px;
+    animation:scrollLine 2s ease infinite;
+}
+
+@keyframes scrollLine{
+    to{
+        left:100%;
+    }
+}
+
+.hero-note{
+    text-align:right;
+    font-size:9px;
+    letter-spacing:.2em;
+    color:#aaa;
+    text-transform:uppercase;
+}
+
+/* ================================
+   INTRO SECTION
+================================ */
+
+.intro{
+    position:relative;
+    padding:150px 0 130px;
+    background:#050505;
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:end;
+}
+
+.section-number{
+    font-size:10px;
+    color:#777;
+    letter-spacing:.25em;
+    margin-bottom:30px;
+}
+
+.intro-title{
+    font-family:"Playfair Display",serif;
+    font-weight:400;
+    font-size:clamp(42px,6vw,88px);
+    line-height:.95;
+    letter-spacing:-.04em;
+}
+
+.intro-text{
+    color:#888;
+    max-width:470px;
+    font-size:14px;
+    line-height:1.9;
+}
+
+.intro-line{
+    width:100%;
+    height:1px;
+    background:#202020;
+    margin-top:90px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:900px){
+
+    .navbar{
+        height:72px;
+    }
+
+    .navbar.scrolled{
+        height:64px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu-btn{
+        display:grid;
+    }
+
+    .brand{
+        font-size:18px;
+    }
+
+    .hero-content{
+        padding-top:40px;
+    }
+
+    .hero-title{
+        font-size:clamp(55px,16vw,100px);
+    }
+
+    .hero-description{
+        max-width:330px;
+        font-size:13px;
+        margin-top:30px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        width:230px;
+    }
+
+    .btn{
+        width:100%;
+        min-width:0;
+    }
+
+    .floating-poster{
+        opacity:.42;
+    }
+
+    .poster-a{
+        right:-8%;
+        top:18%;
+        width:105px;
+    }
+
+    .poster-b{
+        right:-3%;
+        bottom:24%;
+        width:90px;
+    }
+
+    .poster-c{
+        right:28%;
+        bottom:10%;
+        width:75px;
+    }
+
+    .hero-bottom{
+        bottom:22px;
+    }
+
+    .hero-note{
+        display:none;
+    }
+
+    .intro{
+        padding:100px 0;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+
+    .intro-title{
+        font-size:52px;
+    }
+
+}
+
+@media(max-width:520px){
+
+    .nav-inner{
+        width:90%;
+    }
+
+    .nav-actions{
+        gap:8px;
+    }
+
+    .nav-icon{
+        width:37px;
+        height:37px;
+    }
+
+    .hero{
+        min-height:100svh;
+    }
+
+    .hero-video iframe{
+        transform:translate(-50%,-50%) scale(1.6);
+    }
+
+    .hero-content{
+        width:88%;
+    }
+
+    .hero-kicker{
+        font-size:8px;
+        letter-spacing:.24em;
+    }
+
+    .hero-title{
+        font-size:20vw;
+        line-height:.87;
+    }
+
+    .hero-description{
+        font-size:12px;
+        line-height:1.75;
+        max-width:290px;
+    }
+
+    .hero-buttons{
+        width:210px;
+        margin-top:27px;
+    }
+
+    .btn{
+        height:49px;
+        font-size:9px;
+    }
+
+    .poster-a{
+        top:17%;
+        right:-12%;
+    }
+
+    .poster-b{
+        bottom:25%;
+        right:-7%;
+    }
+
+    .poster-c{
+        right:21%;
+        bottom:8%;
+    }
+
+    .intro-title{
+        font-size:45px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================
+     PRELOADER
+================================ -->
+
+<div class="preloader" id="preloader">
+
+    <div class="loader-inner">
+
+        <div class="loader-logo">
+            POSTER LAB
+        </div>
+
+        <div class="loader-line">
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     NAVBAR
+================================ -->
+
+<header class="navbar" id="navbar">
+
+    <div class="nav-inner">
+
+        <a href="#" class="brand">
+            POSTER LAB
+            <small>ART • SPACE • CULTURE</small>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#collection">Collection</a>
+            <a href="#bestsellers">Best Sellers</a>
+            <a href="#catalogue">Catalogue</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <div class="nav-icon" title="Search">
+                ⌕
+            </div>
+
+            <div class="nav-icon" title="Cart">
+                ♡
+            </div>
+
+            <div class="nav-icon menu-btn" title="Menu">
+                ☰
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<section class="hero" id="home">
+
+    <div class="hero-video">
+
+        <iframe
+            src="https://www.youtube.com/embed/1hdO8BhLLww?autoplay=1&mute=1&controls=0&loop=1&playlist=1hdO8BhLLww&rel=0&playsinline=1"
+            title="Poster Lab Background"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="hero-grain"></div>
+
+
+    <!-- FLOATING POSTERS -->
+
+    <img
+        class="floating-poster poster-a"
+        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=85"
+        alt="Gaming Poster">
+
+    <img
+        class="floating-poster poster-b"
+        src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=85"
+        alt="Gaming Poster">
+
+    <img
+        class="floating-poster poster-c"
+        src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=85"
+        alt="Gaming Poster">
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+        <div class="hero-kicker">
+            <span></span>
+            PREMIUM WALL ART
+        </div>
+
+        <h1 class="hero-title">
+
+            <span class="line">
+                <span class="word">ART</span>
+            </span>
+
+            <span class="line">
+                <span class="word">THAT</span>
+            </span>
+
+            <span class="line">
+                <span class="word">MOVES.</span>
+            </span>
+
+        </h1>
+
+        <p class="hero-description">
+            Premium posters designed for spaces that deserve
+            more than ordinary walls. Gaming, cinema, anime,
+            culture and everything you love.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#collection" class="btn btn-primary">
+                Explore Collection
+            </a>
+
+            <a href="#catalogue" class="btn btn-outline">
+                View Catalogue
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO BOTTOM -->
+
+    <div class="hero-bottom">
+
+        <div class="scroll-label">
+            <span class="scroll-line"></span>
+            Scroll to explore
+        </div>
+
+        <div class="hero-note">
+            Designed for your space<br>
+            Made to stand out
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     INTRO
+================================ -->
+
+<section class="intro" id="about">
+
+    <div class="container">
+
+        <div class="intro-grid">
+
+            <div>
+
+                <div class="section-number">
+                    01 / THE IDEA
+                </div>
+
+                <h2 class="intro-title">
+                    Your wall.<br>
+                    Your world.
+                </h2>
+
+            </div>
+
+            <div>
+
+                <p class="intro-text">
+                    We create statement posters for people who
+                    don't want their walls to look ordinary.
+                    Every artwork is selected to bring character,
+                    attitude and personality into your space.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="intro-line"></div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* ================================
+   PRELOADER
+================================ */
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document
+        .getElementById("preloader")
+        .classList.add("hide");
+
+    },1200);
+
+});
+
+
+/* ================================
+   NAVBAR SCROLL
+================================ */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 50){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* ================================
+   MOUSE PARALLAX
+================================ */
+
+const floatingPosters =
+document.querySelectorAll(".floating-poster");
+
+window.addEventListener("mousemove",function(e){
+
+    const x =
+        (e.clientX / window.innerWidth - .5);
+
+    const y =
+        (e.clientY / window.innerHeight - .5);
+
+    floatingPosters.forEach(function(poster,index){
+
+        const strength = (index + 1) * 7;
+
+        poster.style.marginLeft =
+            (x * strength) + "px";
+
+        poster.style.marginTop =
+            (y * strength) + "px";
+
+    });
+
+});
+
+</script>
+
+</body>
+          </html>
