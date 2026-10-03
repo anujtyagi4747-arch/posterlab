@@ -1534,5 +1534,541 @@ ORDER ON WHATSAPP
 </div>
 
 </section>
+    <!-- PART 2B : PRODUCTS + WORKING JS -->
+
+<!-- PRODUCT 5 -->
+<article class="product-card reveal-card"
+data-category="gaming"
+data-name="Digital Chaos"
+data-price="₹499">
+
+<div class="product-image">
+
+<span class="product-badge">TRENDING</span>
+
+<button class="quick-btn" onclick="openQuick(this)">+</button>
+
+<img
+src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=900&q=90"
+alt="Digital Chaos">
+
+</div>
+
+<div class="product-info">
+
+<div>
+<div class="product-name">Digital Chaos</div>
+<div class="product-category">Gaming Collection</div>
+</div>
+
+<div class="product-price">₹499</div>
+
+</div>
+
+<button class="product-order"
+onclick="orderWhatsApp('Digital Chaos','₹499')">
+ORDER ON WHATSAPP
+</button>
+
+</article>
+
+
+<!-- PRODUCT 6 -->
+<article class="product-card reveal-card"
+data-category="cinema"
+data-name="After Dark"
+data-price="₹549">
+
+<div class="product-image">
+
+<span class="product-badge">POPULAR</span>
+
+<button class="quick-btn" onclick="openQuick(this)">+</button>
+
+<img
+src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=90"
+alt="After Dark">
+
+</div>
+
+<div class="product-info">
+
+<div>
+<div class="product-name">After Dark</div>
+<div class="product-category">Cinema Collection</div>
+</div>
+
+<div class="product-price">₹549</div>
+
+</div>
+
+<button class="product-order"
+onclick="orderWhatsApp('After Dark','₹549')">
+ORDER ON WHATSAPP
+</button>
+
+</article>
+
+
+<!-- PRODUCT 7 -->
+<article class="product-card reveal-card"
+data-category="anime"
+data-name="Tokyo Nights"
+data-price="₹499">
+
+<div class="product-image">
+
+<span class="product-badge">NEW DROP</span>
+
+<button class="quick-btn" onclick="openQuick(this)">+</button>
+
+<img
+src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=900&q=90"
+alt="Tokyo Nights">
+
+</div>
+
+<div class="product-info">
+
+<div>
+<div class="product-name">Tokyo Nights</div>
+<div class="product-category">Anime Collection</div>
+</div>
+
+<div class="product-price">₹499</div>
+
+</div>
+
+<button class="product-order"
+onclick="orderWhatsApp('Tokyo Nights','₹499')">
+ORDER ON WHATSAPP
+</button>
+
+</article>
+
+
+<!-- PRODUCT 8 -->
+<article class="product-card reveal-card"
+data-category="cars"
+data-name="Mono Machine"
+data-price="₹599">
+
+<div class="product-image">
+
+<span class="product-badge">LIMITED</span>
+
+<button class="quick-btn" onclick="openQuick(this)">+</button>
+
+<img
+src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=90"
+alt="Mono Machine">
+
+</div>
+
+<div class="product-info">
+
+<div>
+<div class="product-name">Mono Machine</div>
+<div class="product-category">Automotive</div>
+</div>
+
+<div class="product-price">₹599</div>
+
+</div>
+
+<button class="product-order"
+onclick="orderWhatsApp('Mono Machine','₹599')">
+ORDER ON WHATSAPP
+</button>
+
+</article>
+
+
+<script>
+
+/* =========================
+   WHATSAPP ORDER
+========================= */
+
+function orderWhatsApp(name,price){
+
+const phone="919372654780";
+
+const message =
+"Hello! I want to order this poster.%0A%0A"+
+"Poster: "+name+"%0A"+
+"Price: "+price+"%0A%0A"+
+"Please share the available options and payment details.";
+
+const url="https://wa.me/"+phone+"?text="+message;
+
+window.open(url,"_blank");
+
+}
+
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+function filterProducts(category,button){
+
+const buttons=document.querySelectorAll(".category-btn");
+
+buttons.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+const products=document.querySelectorAll(".product-card");
+
+products.forEach(product=>{
+
+const productCategory=
+product.getAttribute("data-category");
+
+if(category==="all" ||
+productCategory===category){
+
+product.style.display="block";
+
+setTimeout(()=>{
+product.classList.add("visible");
+},50);
+
+}else{
+
+product.style.display="none";
+product.classList.remove("visible");
+
+}
+
+});
+
+}
+
+
+/* =========================
+   QUICK VIEW
+========================= */
+
+function openQuick(button){
+
+const card=button.closest(".product-card");
+
+const name=
+card.getAttribute("data-name");
+
+const price=
+card.getAttribute("data-price");
+
+const image=
+card.querySelector("img").src;
+
+const category=
+card.getAttribute("data-category");
+
+let old=document.getElementById("quickModal");
+
+if(old){
+old.remove();
+}
+
+const modal=document.createElement("div");
+
+modal.id="quickModal";
+
+modal.innerHTML=`
+
+<div class="quick-overlay"
+onclick="closeQuick()">
+
+<div class="quick-box"
+onclick="event.stopPropagation()">
+
+<button class="quick-close"
+onclick="closeQuick()">×</button>
+
+<img src="${image}" class="quick-image">
+
+<div class="quick-details">
+
+<div class="quick-small">
+${category} COLLECTION
+</div>
+
+<h2>${name}</h2>
+
+<div class="quick-price">
+${price}
+</div>
+
+<p>
+Premium wall artwork designed for
+modern spaces. Order directly on
+WhatsApp and we'll help you with
+the available print options.
+</p>
+
+<button
+class="quick-order"
+onclick="orderWhatsApp('${name}','${price}')">
+
+ORDER THIS POSTER
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+document.body.appendChild(modal);
+
+setTimeout(()=>{
+modal.classList.add("show");
+},20);
+
+}
+
+
+/* =========================
+   CLOSE QUICK VIEW
+========================= */
+
+function closeQuick(){
+
+const modal=
+document.getElementById("quickModal");
+
+if(modal){
+
+modal.classList.remove("show");
+
+setTimeout(()=>{
+modal.remove();
+},250);
+
+}
+
+}
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+closeQuick();
+}
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealObserver=
+new IntersectionObserver(
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("visible");
+
+}
+
+});
+
+},
+{
+threshold:.12
+}
+);
+
+document
+.querySelectorAll(".reveal-card")
+.forEach(card=>{
+revealObserver.observe(card);
+});
+
+
+</script>
+
+
+<style>
+
+/* =========================
+   QUICK VIEW MODAL
+========================= */
+
+#quickModal{
+position:fixed;
+inset:0;
+z-index:99999;
+opacity:0;
+transition:.3s ease;
+}
+
+#quickModal.show{
+opacity:1;
+}
+
+.quick-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.82);
+backdrop-filter:blur(15px);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.quick-box{
+position:relative;
+width:min(850px,100%);
+background:#0b0b0b;
+border:1px solid #292929;
+display:grid;
+grid-template-columns:1fr 1fr;
+overflow:hidden;
+transform:translateY(25px);
+transition:.4s cubic-bezier(.16,1,.3,1);
+}
+
+#quickModal.show .quick-box{
+transform:translateY(0);
+}
+
+.quick-image{
+width:100%;
+height:100%;
+min-height:420px;
+object-fit:cover;
+}
+
+.quick-details{
+padding:45px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.quick-small{
+font-size:8px;
+letter-spacing:.25em;
+color:#777;
+text-transform:uppercase;
+margin-bottom:15px;
+}
+
+.quick-details h2{
+font-family:"Playfair Display",serif;
+font-size:42px;
+font-weight:400;
+margin:0 0 10px;
+}
+
+.quick-price{
+font-size:16px;
+margin-bottom:25px;
+}
+
+.quick-details p{
+font-size:12px;
+line-height:1.8;
+color:#777;
+margin-bottom:25px;
+}
+
+.quick-order{
+height:48px;
+background:#fff;
+border:0;
+color:#000;
+font-size:9px;
+letter-spacing:.18em;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.quick-order:hover{
+background:#ddd;
+}
+
+.quick-close{
+position:absolute;
+z-index:5;
+right:15px;
+top:15px;
+width:38px;
+height:38px;
+border:1px solid #555;
+border-radius:50%;
+background:#080808;
+color:#fff;
+font-size:22px;
+cursor:pointer;
+}
+
+.quick-close:hover{
+background:#fff;
+color:#000;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+.quick-overlay{
+padding:12px;
+}
+
+.quick-box{
+display:block;
+max-height:90vh;
+overflow-y:auto;
+}
+
+.quick-image{
+height:300px;
+min-height:300px;
+}
+
+.quick-details{
+padding:28px 22px 30px;
+}
+
+.quick-details h2{
+font-size:34px;
+}
+
+.quick-details p{
+font-size:11px;
+}
+
+}
+
+
+/* WHATSAPP BUTTON FEEDBACK */
+
+.product-order:active,
+.quick-order:active{
+transform:scale(.97);
+}
+
+    </style>
 </body>
           </html>
